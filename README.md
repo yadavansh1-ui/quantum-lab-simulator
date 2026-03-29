@@ -92,9 +92,11 @@ You will see:
 
 ---
 
+
 ## 📸 Preview
 
-(Add screenshots here if needed)
+![Preview1](preview1.png)
+![Preview2](preview2.png)
 
 ---
 
