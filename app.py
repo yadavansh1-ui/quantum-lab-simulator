@@ -53,23 +53,25 @@ st.markdown("""
   }
 
   /* ══════════════════════════════════════════
-     ANIMATED BACKGROUND — CSS-only quantum grid
+     PROFESSIONAL BACKGROUND — clean dark base
+     Subtle topology lines instead of loud dots
   ══════════════════════════════════════════ */
   .stApp {
     font-family: 'Rajdhani', sans-serif;
     color: var(--text);
-    background-color: var(--bg);
-    /* Subtle scrolling dot-grid */
+    background-color: #020810;
+    /* Extremely subtle topology grid — barely visible, professional */
     background-image:
-      radial-gradient(circle, rgba(0,245,255,.055) 1px, transparent 1px),
-      radial-gradient(circle, rgba(255,0,200,.03) 1px, transparent 1px);
-    background-size: 38px 38px, 76px 76px;
-    background-position: 0 0, 19px 19px;
-    animation: gridDrift 28s linear infinite;
+      linear-gradient(rgba(0,180,220,.018) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,180,220,.018) 1px, transparent 1px),
+      radial-gradient(ellipse 120% 80% at 50% -10%, rgba(0,30,70,.9) 0%, transparent 55%),
+      radial-gradient(ellipse 80% 50% at 0% 100%,  rgba(0,20,50,.6) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 40% at 100% 80%, rgba(10,0,40,.5) 0%, transparent 50%);
+    background-size: 60px 60px, 60px 60px, 100% 100%, 100% 100%, 100% 100%;
   }
   @keyframes gridDrift {
-    0%   { background-position: 0 0, 19px 19px; }
-    100% { background-position: 38px 38px, 57px 57px; }
+    0%   { background-position: 0 0, 0 0, 0 0, 0 0, 0 0; }
+    100% { background-position: 60px 60px, 60px 60px, 0 0, 0 0, 0 0; }
   }
 
   /* Deep vignette overlay */
@@ -141,6 +143,7 @@ st.markdown("""
     font-family: 'Orbitron', monospace;
     font-size: 2.55rem; font-weight: 900;
     letter-spacing: .1em; margin: 0;
+    text-align: center;
     background: linear-gradient(90deg, var(--cyan) 0%, #88ffff 30%, var(--magenta) 65%, var(--cyan) 100%);
     background-size: 250% auto;
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
@@ -155,8 +158,11 @@ st.markdown("""
   }
   .title-wrap .byline {
     font-family: 'Share Tech Mono', monospace;
-    font-size: .78rem; color: #2a5070;
-    letter-spacing: .06em; margin-top: .2rem;
+    font-size: .92rem; letter-spacing: .1em; margin-top: .3rem;
+    background: linear-gradient(90deg, var(--cyan), var(--magenta));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 8px rgba(0,245,255,.4));
+    font-weight: 700;
   }
 
   /* ── Status bar inside header ── */
@@ -880,8 +886,175 @@ st.markdown("""
     50%     { transform: translate(0,-14px)   rotate(2deg); }
   }
 
+  /* ══════════════════════════════════════════
+     ABOUT / PROJECT SECTION
+  ══════════════════════════════════════════ */
+  .about-wrap {
+    margin: 2.5rem 0 1.5rem;
+    position: relative;
+  }
+
+  /* Top divider with label */
+  .about-divider {
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 1.8rem;
+  }
+  .about-divider-line {
+    flex: 1; height: 1px;
+    background: linear-gradient(90deg, transparent, #0d3a60, transparent);
+  }
+  .about-divider-label {
+    font-family: 'Orbitron', monospace;
+    font-size: .65rem; letter-spacing: .3em;
+    color: var(--muted); text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* 3-column card grid */
+  .about-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+    margin-bottom: 1.4rem;
+  }
+  @media (max-width: 900px) {
+    .about-grid { grid-template-columns: 1fr; }
+  }
+
+  .about-card {
+    background: linear-gradient(160deg, #060f1e 0%, #040c18 100%);
+    border: 1px solid #0c2540;
+    border-radius: 14px;
+    padding: 1.5rem 1.6rem 1.6rem;
+    position: relative; overflow: hidden;
+    transition: border-color .3s, transform .25s, box-shadow .3s;
+    box-shadow: 0 4px 24px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.03);
+  }
+  .about-card:hover {
+    border-color: #1a4060;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 36px rgba(0,0,0,.65), 0 0 0 1px rgba(0,245,255,.07);
+  }
+  /* Top accent bar — unique color per card via modifier */
+  .about-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+    opacity: .5;
+  }
+  .about-card.mag::before  { background: linear-gradient(90deg, transparent, var(--magenta), transparent); }
+  .about-card.gold::before { background: linear-gradient(90deg, transparent, var(--gold),    transparent); }
+
+  .about-card-icon {
+    font-size: 1.6rem; margin-bottom: .7rem; display: block;
+    filter: drop-shadow(0 0 8px rgba(0,245,255,.3));
+  }
+  .about-card.mag  .about-card-icon { filter: drop-shadow(0 0 8px rgba(255,0,200,.3)); }
+  .about-card.gold .about-card-icon { filter: drop-shadow(0 0 8px rgba(255,215,0,.3)); }
+
+  .about-card-title {
+    font-family: 'Orbitron', monospace;
+    font-size: .8rem; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--cyan); margin-bottom: .65rem;
+  }
+  .about-card.mag  .about-card-title { color: var(--magenta); }
+  .about-card.gold .about-card-title { color: var(--gold); }
+
+  .about-card-body {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: .95rem; line-height: 1.65;
+    color: #7a9ab8;
+  }
+  .about-card-body strong { color: var(--text-bright); font-weight: 600; }
+
+  /* Wide narrative card — spans full width */
+  .about-card-wide {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, #060f1e 0%, #050a18 60%, #07101f 100%);
+    border: 1px solid #0c2540;
+    border-radius: 14px;
+    padding: 1.6rem 2rem;
+    position: relative; overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.03);
+  }
+  .about-card-wide::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--cyan), var(--magenta), var(--gold), var(--cyan));
+    background-size: 200% auto; animation: shimmer 5s linear infinite; opacity: .6;
+  }
+  .about-card-wide::after {
+    content: '';
+    position: absolute; right: -60px; top: -60px;
+    width: 220px; height: 220px; border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(0,245,255,.04), transparent 70%);
+    pointer-events: none;
+  }
+  .about-card-wide p {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem; line-height: 1.75; color: #7a9ab8;
+    margin: 0;
+  }
+  .about-card-wide p strong { color: var(--text-bright); }
+  .about-card-wide p em { color: var(--cyan); font-style: normal; }
+
+  /* Formula pill row */
+  .formula-row {
+    display: flex; flex-wrap: wrap; gap: .7rem;
+    margin-top: 1.2rem;
+  }
+  .formula-pill {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: .82rem; letter-spacing: .04em;
+    padding: .35rem .9rem;
+    border-radius: 20px;
+    border: 1px solid rgba(0,245,255,.2);
+    background: rgba(0,245,255,.05);
+    color: var(--cyan);
+  }
+  .formula-pill.mag  { border-color: rgba(255,0,200,.2);  background: rgba(255,0,200,.05);  color: var(--magenta); }
+  .formula-pill.gold { border-color: rgba(255,215,0,.2);  background: rgba(255,215,0,.05);  color: var(--gold); }
+
+  /* Tech stack badges */
+  .tech-row {
+    display: flex; flex-wrap: wrap; gap: .55rem; margin-top: 1rem;
+  }
+  .tech-badge {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: .72rem; letter-spacing: .06em;
+    padding: .25rem .75rem;
+    border-radius: 4px;
+    background: rgba(0,180,220,.07);
+    border: 1px solid rgba(0,180,220,.15);
+    color: #4a8aaa;
+    transition: background .2s, border-color .2s, color .2s;
+  }
+  .tech-badge:hover {
+    background: rgba(0,245,255,.12);
+    border-color: rgba(0,245,255,.3);
+    color: var(--cyan);
+  }
+
+  /* Stat row inside about */
+  .stat-row {
+    display: flex; gap: 1.5rem; flex-wrap: wrap;
+    margin-top: 1.1rem; padding-top: 1.1rem;
+    border-top: 1px solid #0c2540;
+  }
+  .stat-item { text-align: center; }
+  .stat-value {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.3rem; font-weight: 700;
+    color: var(--cyan); display: block;
+    text-shadow: 0 0 10px rgba(0,245,255,.4);
+  }
+  .stat-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: .65rem; letter-spacing: .1em;
+    color: var(--muted); text-transform: uppercase;
+    display: block; margin-top: .1rem;
+  }
+
 </style>
-""", unsafe_allow_html=True)
 
 # ─────────────────────────────────────────────────────────────
 # PHYSICS CONSTANTS
@@ -1175,7 +1348,7 @@ st.markdown("""
 <div class="title-wrap">
   <div class="corner-tl"></div>
   <div class="corner-br"></div>
-  <h1>⚛ Quantum Lab Simulator</h1>
+  <h1>⚛ Quantum Lab Simulator — Ansh Yadav</h1>
   <p class="subtitle">🔬 Quantum Chemistry Simulation Environment &nbsp;·&nbsp; Particle in a Box Model</p>
   <p class="byline">Developed by Ansh Yadav &nbsp;|&nbsp; Computational Chemistry Project</p>
   <div class="status-bar">
@@ -1449,6 +1622,164 @@ with plot_col:
           time-dependent wavefunction  ψ(x,t) = ψ(x)·cos(ωt)  evolve in real time.
         </div>
         """, unsafe_allow_html=True)
+
+# ─────────────────────────────────────────────────────────────
+# ABOUT / PROJECT SECTION
+# ─────────────────────────────────────────────────────────────
+st.markdown("""
+<div class="about-wrap">
+
+  <!-- Section divider -->
+  <div class="about-divider">
+    <div class="about-divider-line"></div>
+    <div class="about-divider-label">⚛ About This Project</div>
+    <div class="about-divider-line"></div>
+  </div>
+
+  <!-- Wide narrative card -->
+  <div class="about-card-wide" style="margin-bottom:1.2rem;">
+    <p>
+      <strong>Quantum Lab Simulator</strong> is an interactive computational physics tool that models
+      one of the most fundamental systems in quantum mechanics — the
+      <em>Particle in a Box (PIB)</em> model. Developed as part of a
+      <strong>Computational Chemistry Project</strong> by <strong>Ansh Yadav</strong>, this simulator
+      lets you explore how quantum numbers, box dimensions, and energy levels govern the
+      behaviour of a confined quantum particle in real time.
+    </p>
+    <p style="margin-top:.9rem;">
+      Unlike classical particles that can sit anywhere with any speed, a quantum particle
+      confined to a 1-D box can only exist in <em>discrete energy states</em>. Each state
+      has a unique wavefunction ψ(x) that encodes where the particle is <em>most likely</em>
+      to be found — and this simulator makes that invisible quantum world visible and tangible.
+    </p>
+    <div class="formula-row">
+      <span class="formula-pill">ψₙ(x) = √(2/L) · sin(nπx/L)</span>
+      <span class="formula-pill mag">|ψ(x)|² = probability density</span>
+      <span class="formula-pill gold">Eₙ = n²π²ℏ² / 2mL²</span>
+    </div>
+  </div>
+
+  <!-- 3-column info cards -->
+  <div class="about-grid">
+
+    <!-- Card 1: What we simulate -->
+    <div class="about-card">
+      <span class="about-card-icon">🔬</span>
+      <div class="about-card-title">What We Simulate</div>
+      <div class="about-card-body">
+        A <strong>single electron</strong> confined inside a perfectly rigid 1-D potential well
+        of width L. The walls are infinitely high — the particle cannot escape. Inside,
+        it exists as a <strong>standing wave</strong> described by the Schrödinger equation.
+        We compute and display the exact analytical solution for quantum states n = 1 through 5.
+      </div>
+    </div>
+
+    <!-- Card 2: Physics behind it -->
+    <div class="about-card mag">
+      <span class="about-card-icon">⚡</span>
+      <div class="about-card-title">The Physics</div>
+      <div class="about-card-body">
+        The <strong>time-independent Schrödinger equation</strong> −(ℏ²/2m)·ψ″ = Eψ
+        gives quantised energy levels <strong>Eₙ ∝ n²</strong>. Doubling the quantum number
+        quadruples the energy. Doubling the box length quarters it.
+        The <strong>probability density</strong> |ψ|² tells us where — statistically —
+        the particle will be detected upon measurement.
+      </div>
+    </div>
+
+    <!-- Card 3: What you can explore -->
+    <div class="about-card gold">
+      <span class="about-card-icon">🧪</span>
+      <div class="about-card-title">What You Can Explore</div>
+      <div class="about-card-body">
+        Drag the <strong>quantum number n</strong> slider to jump between energy states and
+        watch the wavefunction reshape. Adjust <strong>box length L</strong> to see energy
+        levels compress or spread. Hit <strong>Animate Phase</strong> to watch the
+        time-dependent wavefunction ψ(x,t) oscillate — a real-time glimpse of quantum dynamics.
+      </div>
+    </div>
+
+    <!-- Card 4: Key concepts -->
+    <div class="about-card">
+      <span class="about-card-icon">📐</span>
+      <div class="about-card-title">Key Quantum Concepts</div>
+      <div class="about-card-body">
+        <strong>Quantisation</strong> — only discrete energies are allowed, no continuum.<br><br>
+        <strong>Nodes</strong> — ψ(x) has (n−1) zero-crossings; more nodes = higher energy.<br><br>
+        <strong>Antinodes</strong> — probability peaks where the particle is most likely found.<br><br>
+        <strong>Zero-point energy</strong> — even n=1 has non-zero energy; the particle can never be still.
+      </div>
+    </div>
+
+    <!-- Card 5: Real-world applications -->
+    <div class="about-card mag">
+      <span class="about-card-icon">🌐</span>
+      <div class="about-card-title">Real-World Applications</div>
+      <div class="about-card-body">
+        The PIB model underpins real chemistry and physics: <strong>conjugated π-systems</strong>
+        in organic molecules, <strong>quantum dots</strong> whose colour is tuned by size,
+        <strong>semiconductor nanowires</strong>, and <strong>spectroscopic selection rules</strong>.
+        It is the gateway model for understanding atoms, molecules, and solid-state band theory.
+      </div>
+    </div>
+
+    <!-- Card 6: Tech stack -->
+    <div class="about-card gold">
+      <span class="about-card-icon">💻</span>
+      <div class="about-card-title">Built With</div>
+      <div class="about-card-body">
+        A pure-Python scientific stack — no heavy frameworks, no black-box solvers.
+        Every wavefunction, every energy level, every graph is computed analytically
+        from first principles in the code itself.
+        <div class="tech-row">
+          <span class="tech-badge">Python 3</span>
+          <span class="tech-badge">Streamlit</span>
+          <span class="tech-badge">NumPy</span>
+          <span class="tech-badge">Matplotlib</span>
+          <span class="tech-badge">SVG / CSS</span>
+          <span class="tech-badge">Quantum Mechanics</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Stats strip -->
+  <div class="about-card-wide">
+    <div class="stat-row">
+      <div class="stat-item">
+        <span class="stat-value">5</span>
+        <span class="stat-label">Quantum States</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">800</span>
+        <span class="stat-label">Grid Points</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">40</span>
+        <span class="stat-label">Animation Frames</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">1.055×10⁻³⁴</span>
+        <span class="stat-label">ℏ  (J·s)</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">9.109×10⁻³¹</span>
+        <span class="stat-label">mₑ  (kg)</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">1–10 Å</span>
+        <span class="stat-label">Box Length Range</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">100%</span>
+        <span class="stat-label">Analytical Solution</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+""", unsafe_allow_html=True)
 
 # ─────────────────────────────────────────────────────────────
 # FOOTER
