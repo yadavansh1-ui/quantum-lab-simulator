@@ -1,8 +1,7 @@
+# -*- coding: utf-8 -*-
 """
-╔══════════════════════════════════════════════════════════╗
-║           QUANTUM LAB SIMULATOR — Particle in a Box      ║
-║           Built with Streamlit, NumPy & Matplotlib       ║
-╚══════════════════════════════════════════════════════════╝
+Quantum Lab Simulator - Particle in a Box
+Built with Streamlit, NumPy & Matplotlib
 """
 
 import streamlit as st
@@ -12,9 +11,9 @@ import matplotlib.patches as mpatches
 from matplotlib.gridspec import GridSpec
 import time
 
-# ─────────────────────────────────────────────────────────────
+# -------------------------------------------------------------
 # PAGE CONFIGURATION
-# ─────────────────────────────────────────────────────────────
+# -------------------------------------------------------------
 st.set_page_config(
     page_title="Quantum Lab Simulator",
     page_icon="⚛️",
@@ -22,15 +21,15 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-# ─────────────────────────────────────────────────────────────
-# GLOBAL CSS — Futuristic Quantum Chemistry Lab theme
-# ─────────────────────────────────────────────────────────────
+# -------------------------------------------------------------
+# GLOBAL CSS - Futuristic Quantum Chemistry Lab theme
+# -------------------------------------------------------------
 st.markdown("""
 <style>
-  /* ── Google Fonts ── */
+  /* -- Google Fonts -- */
   @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&family=Share+Tech+Mono&display=swap');
 
-  /* ── Design tokens ── */
+  /* -- Design tokens -- */
   :root {
     --bg:          #030912;
     --bg2:         #060f1e;
@@ -52,10 +51,10 @@ st.markdown("""
     --glow-g:      0 0 18px rgba(57,255,20,.4);
   }
 
-  /* ══════════════════════════════════════════
+  /* ==========================================
      PROFESSIONAL BACKGROUND — clean dark base
      Subtle topology lines instead of loud dots
-  ══════════════════════════════════════════ */
+  ========================================== */
   .stApp {
     font-family: 'Rajdhani', sans-serif;
     color: var(--text);
@@ -90,12 +89,12 @@ st.markdown("""
     position: relative; z-index: 1;
   }
 
-  /* ── Hide Streamlit chrome ── */
+  /* -- Hide Streamlit chrome -- */
   #MainMenu, footer, header { visibility: hidden; }
 
-  /* ══════════════════════════════════════════
+  /* ==========================================
      TITLE BANNER
-  ══════════════════════════════════════════ */
+  ========================================== */
   .title-wrap {
     position: relative; overflow: hidden;
     background: linear-gradient(120deg, #030d1f 0%, #071830 45%, #030d1f 100%);
@@ -165,7 +164,7 @@ st.markdown("""
     font-weight: 700;
   }
 
-  /* ── Status bar inside header ── */
+  /* -- Status bar inside header -- */
   .status-bar {
     display: flex; gap: 1.4rem; margin-top: 1.1rem;
     flex-wrap: wrap;
@@ -187,9 +186,9 @@ st.markdown("""
   }
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
 
-  /* ══════════════════════════════════════════
+  /* ==========================================
      SECTION LABELS
-  ══════════════════════════════════════════ */
+  ========================================== */
   .section-label {
     font-family: 'Orbitron', monospace;
     font-size: .68rem; letter-spacing: .24em;
@@ -210,9 +209,9 @@ st.markdown("""
     background: linear-gradient(90deg, var(--border-glow), transparent);
   }
 
-  /* ══════════════════════════════════════════
+  /* ==========================================
      CONTROL CARD  (left panel)
-  ══════════════════════════════════════════ */
+  ========================================== */
   .control-card {
     background: linear-gradient(160deg, #071422, #050f1a);
     border: 1px solid var(--border);
@@ -237,9 +236,9 @@ st.markdown("""
     background: linear-gradient(90deg, transparent, rgba(0,245,255,.25), transparent);
   }
 
-  /* ══════════════════════════════════════════
+  /* ==========================================
      METRIC PILLS
-  ══════════════════════════════════════════ */
+  ========================================== */
   .metric-pill {
     background: linear-gradient(145deg, #050f1d, #08192e);
     border: 1px solid var(--border);
@@ -277,9 +276,9 @@ st.markdown("""
     font-size: .72rem; color: var(--muted); margin-left: .3rem;
   }
 
-  /* ══════════════════════════════════════════
+  /* ==========================================
      SLIDERS
-  ══════════════════════════════════════════ */
+  ========================================== */
   .stSlider > div { padding: 0; }
   .stSlider [data-baseweb="slider"] { margin-top: 0; }
   div[data-testid="stSlider"] label {
@@ -293,9 +292,9 @@ st.markdown("""
   }
   .stSlider [data-testid="stSliderTrackFill"] { background: var(--cyan) !important; }
 
-  /* ══════════════════════════════════════════
+  /* ==========================================
      GRAPH WRAPPER — glowing card
-  ══════════════════════════════════════════ */
+  ========================================== */
   .graph-card {
     background: linear-gradient(160deg, #060f1d, #040c18);
     border: 1px solid var(--border);
@@ -329,7 +328,7 @@ st.markdown("""
     100% { top: 200%; opacity: 0; }
   }
 
-  /* ── Graph header bar ── */
+  /* -- Graph header bar -- */
   .graph-header {
     display: flex; align-items: center; gap: .65rem;
     margin-bottom: .7rem;
@@ -356,9 +355,9 @@ st.markdown("""
     border-radius: 4px; padding: .15rem .5rem;
   }
 
-  /* ══════════════════════════════════════════
+  /* ==========================================
      INFO BOX
-  ══════════════════════════════════════════ */
+  ========================================== */
   .info-box {
     background: linear-gradient(135deg, rgba(0,245,255,.04), rgba(255,0,200,.03));
     border: 1px solid rgba(0,245,255,.14);
@@ -377,9 +376,9 @@ st.markdown("""
   }
   .info-box strong { color: var(--cyan); }
 
-  /* ══════════════════════════════════════════
+  /* ==========================================
      ANIMATE BUTTON
-  ══════════════════════════════════════════ */
+  ========================================== */
   .stButton > button {
     background: linear-gradient(90deg, #001f30, #001220);
     border: 1px solid var(--cyan); color: var(--cyan);
@@ -405,9 +404,9 @@ st.markdown("""
   .stButton > button:hover::before { left: 100%; }
   .stButton > button:active { transform: translateY(0); }
 
-  /* ══════════════════════════════════════════
+  /* ==========================================
      FOOTER
-  ══════════════════════════════════════════ */
+  ========================================== */
   .footer {
     text-align: center;
     font-family: 'Orbitron', monospace;
@@ -425,17 +424,17 @@ st.markdown("""
   .footer span { color: var(--cyan); text-shadow: 0 0 10px rgba(0,245,255,.35); }
   .footer .footer-icons { font-size: 1rem; margin-bottom: .4rem; letter-spacing: .35em; }
 
-  /* ══════════════════════════════════════════
+  /* ==========================================
      LEGEND DOT (unchanged utility)
-  ══════════════════════════════════════════ */
+  ========================================== */
   .legend-dot {
     display: inline-block; width: 11px; height: 11px;
     border-radius: 50%; margin-right: 6px; vertical-align: middle;
   }
 
-  /* ══════════════════════════════════════════
+  /* ==========================================
      FLOATING PARTICLES — pure CSS, 8 orbs
-  ══════════════════════════════════════════ */
+  ========================================== */
   .particle-field {
     position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
   }
@@ -459,27 +458,27 @@ st.markdown("""
     100% { bottom: 105vh; opacity: 0;    transform: translateX(-20px) scale(.7); }
   }
 
-  /* ══════════════════════════════════════════
+  /* ==========================================
      WAVE RIPPLE DECORATOR
-  ══════════════════════════════════════════ */
+  ========================================== */
   .wave-decorator {
     height: 28px; overflow: hidden; margin: .5rem 0 -.2rem; opacity: .3;
   }
   .wave-decorator svg { animation: waveDrift 6s ease-in-out infinite; }
   @keyframes waveDrift { 0%,100%{transform:translateX(0)} 50%{transform:translateX(-20px)} }
 
-  /* ══════════════════════════════════════════
+  /* ==========================================
      ATOM SCENE — fixed background layer
      3 animated atomic structures + floating
      quantum wave ribbons, all CSS/SVG only
-  ══════════════════════════════════════════ */
+  ========================================== */
   .atom-scene {
     position: fixed; inset: 0;
     pointer-events: none; z-index: 0;
     overflow: hidden;
   }
 
-  /* ── Shared atom wrapper ── */
+  /* -- Shared atom wrapper -- */
   .atom { position: absolute; }
 
   /* Nucleus core */
@@ -526,7 +525,7 @@ st.markdown("""
   .electron.mag  { background: var(--magenta); box-shadow: 0 0 6px 2px rgba(255,0,200,.6); }
   .electron.gold { background: var(--gold);    box-shadow: 0 0 6px 2px rgba(255,215,0,.6); }
 
-  /* ── ATOM 1 — top-left, large cyan ── */
+  /* -- ATOM 1 — top-left, large cyan -- */
   .atom1 {
     top: 6%; left: -3%;
     width: 180px; height: 180px;
@@ -546,7 +545,7 @@ st.markdown("""
     66%     { transform: translateY(10px)  rotate(-3deg); }
   }
 
-  /* ── ATOM 2 — bottom-right, medium magenta ── */
+  /* -- ATOM 2 — bottom-right, medium magenta -- */
   .atom2 {
     bottom: 8%; right: -2%;
     width: 140px; height: 140px;
@@ -563,7 +562,7 @@ st.markdown("""
     50%     { transform: translateY(-22px) rotate(-5deg); }
   }
 
-  /* ── ATOM 3 — mid-right, small gold ── */
+  /* -- ATOM 3 — mid-right, small gold -- */
   .atom3 {
     top: 42%; right: 1%;
     width: 100px; height: 100px;
@@ -580,7 +579,7 @@ st.markdown("""
     50%     { transform: translateY(-14px) rotate(6deg); }
   }
 
-  /* ── Shared orbit spin ── */
+  /* -- Shared orbit spin -- */
   @keyframes spinOrbit  { from{ transform-origin:center; } to{ transform-origin:center; rotate: 360deg; } }
   /* Each ring spins independently via its own initial rotate + this animation */
   .r1 { animation-name: spin0  !important; }
@@ -595,7 +594,7 @@ st.markdown("""
     to   { transform: rotate(360deg) translateX(50px) rotate(-360deg); }
   }
 
-  /* ── Quantum wave ribbons (SVG, inline) ── */
+  /* -- Quantum wave ribbons (SVG, inline) -- */
   .wave-ribbon {
     position: fixed; pointer-events: none; z-index: 0;
     opacity: .07;
@@ -605,9 +604,9 @@ st.markdown("""
   @keyframes wribbon1 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-18px)} }
   @keyframes wribbon2 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(16px)}  }
 
-  /* ══════════════════════════════════════════
+  /* ==========================================
      FAKE 3D DEPTH — layered glow planes
-  ══════════════════════════════════════════ */
+  ========================================== */
   /* Deep background plane — faint cyan aurora far back */
   .depth-plane {
     position: fixed; pointer-events: none; z-index: 0;
@@ -658,10 +657,10 @@ st.markdown("""
     to   { background-position: 72px 72px; }
   }
 
-  /* ══════════════════════════════════════════
+  /* ==========================================
      WAVEFUNCTION GLOW EFFECT
      Wraps the pyplot output in a pulsing ring
-  ══════════════════════════════════════════ */
+  ========================================== */
   /* Target the stImage / pyplot container */
   [data-testid="stImage"] img,
   .stpyplot img {
@@ -699,9 +698,9 @@ st.markdown("""
     50%     { box-shadow: 0 0 0 1px rgba(0,245,255,.10), 0 0 22px rgba(0,245,255,.10), 0 6px 36px rgba(0,0,0,.55); }
   }
 
-  /* ══════════════════════════════════════════
+  /* ==========================================
      ADVANCED MICRO-ANIMATIONS
-  ══════════════════════════════════════════ */
+  ========================================== */
 
   /* Control card — 3D tilt illusion on hover */
   .control-card {
@@ -797,10 +796,10 @@ st.markdown("""
     );
   }
 
-  /* ══════════════════════════════════════════
+  /* ==========================================
      MOLECULE STRUCTURES — fixed background
      Pure SVG, pointer-events:none, very faint
-  ══════════════════════════════════════════ */
+  ========================================== */
   .mol-scene {
     position: fixed; inset: 0;
     pointer-events: none; z-index: 0;
@@ -886,9 +885,9 @@ st.markdown("""
     50%     { transform: translate(0,-14px)   rotate(2deg); }
   }
 
-  /* ══════════════════════════════════════════
+  /* ==========================================
      ABOUT / PROJECT SECTION
-  ══════════════════════════════════════════ */
+  ========================================== */
   .about-wrap {
     margin: 2.5rem 0 1.5rem;
     position: relative;
@@ -1056,9 +1055,10 @@ st.markdown("""
 
 </style>
 
-# ─────────────────────────────────────────────────────────────
+""", unsafe_allow_html=True)
+# -------------------------------------------------------------
 # PHYSICS CONSTANTS
-# ─────────────────────────────────────────────────────────────
+# -------------------------------------------------------------
 HBAR   = 1.0546e-34   # Reduced Planck constant (J·s)
 M_ELEC = 9.109e-31    # Electron mass (kg)
 EV     = 1.602e-19    # Joules per eV
@@ -1066,25 +1066,25 @@ EV     = 1.602e-19    # Joules per eV
 # Neon color palette for energy levels n=1..5
 LEVEL_COLORS = ['#00f5ff', '#ff00c8', '#ffd700', '#39ff14', '#ff6b35']
 
-# ─────────────────────────────────────────────────────────────
+# -------------------------------------------------------------
 # PHYSICS FUNCTIONS
-# ─────────────────────────────────────────────────────────────
+# -------------------------------------------------------------
 def wavefunction(x, n, L):
-    """ψ_n(x) = sqrt(2/L) * sin(nπx/L) — normalised PIB wavefunction."""
+    """psi_n(x) = sqrt(2/L) * sin(n*pi*x/L) - normalised PIB wavefunction."""
     return np.sqrt(2.0 / L) * np.sin(n * np.pi * x / L)
 
 def probability_density(x, n, L):
-    """ψ²(x) — probability density (always ≥ 0)."""
+    """psi^2(x) - probability density (always >= 0)."""
     return wavefunction(x, n, L) ** 2
 
 def energy_level(n, L):
-    """E_n = n²π²ℏ²/(2mL²), returned in eV."""
+    """E_n = n^2 * pi^2 * hbar^2 / (2*m*L^2), returned in eV."""
     E_joule = (n**2 * np.pi**2 * HBAR**2) / (2 * M_ELEC * (L * 1e-10)**2)
     return E_joule / EV  # convert to eV
 
-# ─────────────────────────────────────────────────────────────
+# -------------------------------------------------------------
 # MATPLOTLIB STYLE — dark neon
-# ─────────────────────────────────────────────────────────────
+# -------------------------------------------------------------
 def apply_dark_style(ax, title, xlabel, ylabel):
     """Apply consistent dark neon styling to an Axes object."""
     ax.set_facecolor('#060e1e')
@@ -1097,31 +1097,31 @@ def apply_dark_style(ax, title, xlabel, ylabel):
         spine.set_edgecolor('#0d2a4a')
     ax.grid(True, color='#0d2a4a', linewidth=.7, linestyle='--', alpha=.6)
 
-# ─────────────────────────────────────────────────────────────
+# -------------------------------------------------------------
 # BACKGROUND SCENE — depth planes + mid-grid + atoms + particles
 # All fixed, pointer-events:none, CSS/SVG only
-# ─────────────────────────────────────────────────────────────
+# -------------------------------------------------------------
 st.markdown("""
 
-<!-- ── CRT scanline overlay ── -->
+<!-- -- CRT scanline overlay -- -->
 <div class="scanlines"></div>
 
-<!-- ── 3D depth aurora planes ── -->
+<!-- -- 3D depth aurora planes -- -->
 <div class="depth-plane dp1"></div>
 <div class="depth-plane dp2"></div>
 <div class="depth-plane dp3"></div>
 
-<!-- ── Perspective grid (mid-plane) ── -->
+<!-- -- Perspective grid (mid-plane) -- -->
 <div class="mid-grid"></div>
 
-<!-- ── Floating particle orbs ── -->
+<!-- -- Floating particle orbs -- -->
 <div class="particle-field">
   <div class="orb"></div><div class="orb"></div><div class="orb"></div>
   <div class="orb"></div><div class="orb"></div><div class="orb"></div>
   <div class="orb"></div><div class="orb"></div>
 </div>
 
-<!-- ── Quantum wave ribbons (SVG sine waves) ── -->
+<!-- -- Quantum wave ribbons (SVG sine waves) -- -->
 <div class="wave-ribbon wr1">
   <svg viewBox="0 0 600 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
     <path d="M0,30 C50,10 100,50 150,30 C200,10 250,50 300,30 C350,10 400,50 450,30 C500,10 550,50 600,30"
@@ -1137,9 +1137,9 @@ st.markdown("""
   </svg>
 </div>
 
-<!-- ══════════════════════════════════════════
+<!-- ==========================================
      ATOMIC STRUCTURES — 3 animated atoms
-══════════════════════════════════════════ -->
+========================================== -->
 <div class="atom-scene">
 
   <!-- ATOM 1 — top-left, cyan, 3 orbital rings -->
@@ -1184,11 +1184,11 @@ st.markdown("""
 </div>
 <!-- END atom-scene -->
 
-<!-- ══════════════════════════════════════════
+<!-- ==========================================
      MOLECULE STRUCTURES — 6 faint SVG molecules
      Benzene rings, fused rings, triatomics, CO₂
      All floating slowly, opacity .055–.07
-══════════════════════════════════════════ -->
+========================================== -->
 <div class="mol-scene">
 
   <!-- mol-1 : Benzene ring — bottom-left, cyan strokes -->
@@ -1341,9 +1341,9 @@ st.markdown("""
 
 """, unsafe_allow_html=True)
 
-# ─────────────────────────────────────────────────────────────
+# -------------------------------------------------------------
 # TITLE BANNER
-# ─────────────────────────────────────────────────────────────
+# -------------------------------------------------------------
 st.markdown("""
 <div class="title-wrap">
   <div class="corner-tl"></div>
@@ -1360,37 +1360,37 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# ─────────────────────────────────────────────────────────────
+# -------------------------------------------------------------
 # LAYOUT: left controls | right plots
-# ─────────────────────────────────────────────────────────────
+# -------------------------------------------------------------
 ctrl_col, plot_col = st.columns([1, 2.6], gap="large")
 
-# ══════════════════════════════════════════════════════════════
-# LEFT COLUMN — Controls
-# ══════════════════════════════════════════════════════════════
+# ==============================================================
+# LEFT COLUMN - Controls
+# ==============================================================
 with ctrl_col:
 
-    # ── Section header ───────────────────────────────────────
+    # -- Section header ---------------------------------------
     st.markdown('<div class="section-label">⚙️ &nbsp;System Controls</div>', unsafe_allow_html=True)
 
-    # ── Control card ─────────────────────────────────────────
+    # -- Control card -----------------------------------------
     st.markdown('<div class="control-card">', unsafe_allow_html=True)
 
     # Quantum number n
     n = st.slider(
         "Quantum Number  n",
         min_value=1, max_value=5, value=1, step=1,
-        help="Principal quantum number — sets the energy level and wavefunction shape."
+        help="Principal quantum number - sets the energy level and wavefunction shape."
     )
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # Box length L (in Ångströms)
+    # Box length L (in Angströms)
     L_angstrom = st.slider(
-        "Box Length  L  (Å)",
+        "Box Length  L  (A)",
         min_value=1.0, max_value=10.0, value=5.0, step=0.1,
-        format="%.1f Å",
-        help="Width of the potential well in Ångströms (1 Å = 10⁻¹⁰ m)."
+        format="%.1f A",
+        help="Width of the potential well in Angströms (1 A = 10⁻¹⁰ m)."
     )
 
     st.markdown("<br>", unsafe_allow_html=True)
@@ -1404,7 +1404,7 @@ with ctrl_col:
 
     st.markdown('</div>', unsafe_allow_html=True)
 
-    # ── Energy readout ───────────────────────────────────────
+    # -- Energy readout ---------------------------------------
     st.markdown('<div class="section-label">⚡ &nbsp;Energy Readout</div>', unsafe_allow_html=True)
 
     E_current = energy_level(n, L_angstrom)
@@ -1428,24 +1428,24 @@ with ctrl_col:
     </div>
     """, unsafe_allow_html=True)
 
-    # ── Info box ─────────────────────────────────────────────
+    # -- Info box ---------------------------------------------
     st.markdown(f"""
     <div class="info-box">
-      <strong>ψ(x)</strong> oscillates with <strong>n</strong> antinodes.<br>
-      <strong>ψ²(x)</strong> shows the probability of finding the particle.<br>
-      Energy scales as <strong>n²</strong> — doubling n quadruples E.
+      <strong>psi(x)</strong> oscillates with <strong>n</strong> antinodes.<br>
+      <strong>psi^2(x)</strong> shows the probability of finding the particle.<br>
+      Energy scales as <strong>n^2</strong> - doubling n quadruples E.
     </div>
     """, unsafe_allow_html=True)
 
-    # ── Animate toggle ───────────────────────────────────────
+    # -- Animate toggle ---------------------------------------
     animate = st.button("▶  Animate Phase", use_container_width=True)
 
-# ══════════════════════════════════════════════════════════════
-# RIGHT COLUMN — Plots
-# ══════════════════════════════════════════════════════════════
+# ==============================================================
+# RIGHT COLUMN - Plots
+# ==============================================================
 with plot_col:
 
-    # ── Section header ───────────────────────────────────────
+    # -- Section header ---------------------------------------
     st.markdown('<div class="section-label">📊 &nbsp;Wavefunction &amp; Probability Density</div>',
                 unsafe_allow_html=True)
 
@@ -1469,17 +1469,17 @@ with plot_col:
     # Choose neon color for current n
     line_color = LEVEL_COLORS[n - 1]
 
-    # ── Build figure ─────────────────────────────────────────
+    # -- Build figure -----------------------------------------
     fig = plt.figure(figsize=(11, 8.5), facecolor='#050b18')
     fig.subplots_adjust(hspace=.42, left=.08, right=.97, top=.93, bottom=.06)
 
     gs = GridSpec(3, 1, figure=fig, hspace=.5)
 
-    # ── Panel 1 — Wavefunction ψ(x) ──────────────────────────
+    # -- Panel 1 - Wavefunction psi(x) --------------------------
     ax1 = fig.add_subplot(gs[0])
     apply_dark_style(ax1,
-                     f"Wavefunction  ψ_{n}(x)  —  n = {n},  L = {L_angstrom:.1f} Å",
-                     "Position  x  (Å)", "ψ(x)")
+                     f"Wavefunction  psi_{n}(x)  -  n = {n},  L = {L_angstrom:.1f} A",
+                     "Position  x  (A)", "psi(x)")
 
     # Shaded fill between curve and zero
     ax1.fill_between(x_vals, psi, 0,
@@ -1491,12 +1491,12 @@ with plot_col:
 
     # Main wavefunction line
     ax1.plot(x_vals, psi, color=line_color, linewidth=2.2,
-             label=f"ψ_{n}(x)")
+             label=f"psi_{n}(x)")
 
     # Zero reference
     ax1.axhline(0, color='#1e3a5a', linewidth=.8, linestyle='-')
 
-    # Box walls — vertical dashed lines
+    # Box walls - vertical dashed lines
     ax1.axvline(0,             color='#ff4444', linewidth=1.2,
                 linestyle='--', alpha=.7, label='Wall')
     ax1.axvline(L_angstrom,    color='#ff4444', linewidth=1.2,
@@ -1506,17 +1506,17 @@ with plot_col:
                labelcolor='#8ab4d4', framealpha=.9)
     ax1.set_xlim(-0.2, L_angstrom + 0.2)
 
-    # ── Panel 2 — Probability density ψ²(x) ─────────────────
+    # -- Panel 2 - Probability density psi^2(x) -----------------
     ax2 = fig.add_subplot(gs[1])
     apply_dark_style(ax2,
-                     f"Probability Density  |ψ_{n}(x)|²",
-                     "Position  x  (Å)", "ψ²(x)")
+                     f"Probability Density  |psi_{n}(x)|^2",
+                     "Position  x  (A)", "psi^2(x)")
 
     # Gradient-style fill
     ax2.fill_between(x_vals, psi_sq, alpha=.35,
                      color=line_color)
     ax2.plot(x_vals, psi_sq, color=line_color, linewidth=2.2,
-             label=f"|ψ_{n}(x)|²")
+             label=f"|psi_{n}(x)|^2")
 
     # Mark probability maxima (antinodes)
     # Antinode positions: x = (2k-1)*L/(2n), k=1..n
@@ -1535,7 +1535,7 @@ with plot_col:
                labelcolor='#8ab4d4', framealpha=.9)
     ax2.set_xlim(-0.2, L_angstrom + 0.2)
 
-    # ── Panel 3 — Energy Level Diagram ───────────────────────
+    # -- Panel 3 - Energy Level Diagram -----------------------
     ax3 = fig.add_subplot(gs[2])
     apply_dark_style(ax3,
                      "Energy Level Diagram",
@@ -1575,12 +1575,12 @@ with plot_col:
     st.pyplot(fig, use_container_width=True)
     plt.close(fig)
 
-    # ── Section header ───────────────────────────────────────
+    # -- Section header ---------------------------------------
     st.markdown('<div class="section-label">🌊 &nbsp;Phase Animation (Time-Dependent)</div>',
                 unsafe_allow_html=True)
 
-    # ── Phase animation ───────────────────────────────────────
-    # ψ(x,t) ∝ ψ_n(x) · cos(ωt), displayed as a time sweep
+    # -- Phase animation ---------------------------------------
+    # psi(x,t) ∝ psi_n(x) · cos(ωt), displayed as a time sweep
     if animate:
         placeholder = st.empty()
         omega = energy_level(n, L_angstrom) * EV / HBAR   # angular frequency
@@ -1593,8 +1593,8 @@ with plot_col:
             fig_a, ax_a = plt.subplots(figsize=(10, 2.8),
                                        facecolor='#050b18')
             apply_dark_style(ax_a,
-                             f"ψ_{n}(x, t)  —  time step {frame + 1}/40",
-                             "x (Å)", "ψ(x,t)")
+                             f"psi_{n}(x, t)  -  time step {frame + 1}/40",
+                             "x (A)", "psi(x,t)")
 
             ax_a.fill_between(x_vals, psi_t, 0,
                               where=(psi_t >= 0), alpha=.2,
@@ -1623,9 +1623,9 @@ with plot_col:
         </div>
         """, unsafe_allow_html=True)
 
-# ─────────────────────────────────────────────────────────────
+# -------------------------------------------------------------
 # ABOUT / PROJECT SECTION
-# ─────────────────────────────────────────────────────────────
+# -------------------------------------------------------------
 st.markdown("""
 <div class="about-wrap">
 
@@ -1781,9 +1781,9 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# ─────────────────────────────────────────────────────────────
+# -------------------------------------------------------------
 # FOOTER
-# ─────────────────────────────────────────────────────────────
+# -------------------------------------------------------------
 st.markdown("""
 <div class="footer">
   <div class="footer-icons">⚛️ &nbsp; 🔬 &nbsp; 🧪 &nbsp; 🌊 &nbsp; ⚡</div>
