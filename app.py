@@ -1103,25 +1103,20 @@ def apply_dark_style(ax, title, xlabel, ylabel):
 # -------------------------------------------------------------
 st.markdown("""
 
-<!-- -- CRT scanline overlay -- -->
 <div class="scanlines"></div>
 
-<!-- -- 3D depth aurora planes -- -->
 <div class="depth-plane dp1"></div>
 <div class="depth-plane dp2"></div>
 <div class="depth-plane dp3"></div>
 
-<!-- -- Perspective grid (mid-plane) -- -->
 <div class="mid-grid"></div>
 
-<!-- -- Floating particle orbs -- -->
 <div class="particle-field">
   <div class="orb"></div><div class="orb"></div><div class="orb"></div>
   <div class="orb"></div><div class="orb"></div><div class="orb"></div>
   <div class="orb"></div><div class="orb"></div>
 </div>
 
-<!-- -- Quantum wave ribbons (SVG sine waves) -- -->
 <div class="wave-ribbon wr1">
   <svg viewBox="0 0 600 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
     <path d="M0,30 C50,10 100,50 150,30 C200,10 250,50 300,30 C350,10 400,50 450,30 C500,10 550,50 600,30"
@@ -1142,24 +1137,19 @@ st.markdown("""
 ========================================== -->
 <div class="atom-scene">
 
-  <!-- ATOM 1 — top-left, cyan, 3 orbital rings -->
   <div class="atom atom1">
     <div class="nucleus"></div>
-    <!-- Ring 1 -->
     <div class="orbit-ring r1" style="width:130px;height:50px;top:65px;left:25px;">
       <div class="electron e1" style="width:6px;height:6px;top:-3px;left:62px;"></div>
     </div>
-    <!-- Ring 2 -->
     <div class="orbit-ring r2" style="width:130px;height:50px;top:65px;left:25px;">
       <div class="electron e2" style="width:5px;height:5px;top:-3px;left:62px;"></div>
     </div>
-    <!-- Ring 3 -->
     <div class="orbit-ring r3" style="width:130px;height:50px;top:65px;left:25px;">
       <div class="electron e3" style="width:5px;height:5px;top:-3px;left:62px;"></div>
     </div>
   </div>
 
-  <!-- ATOM 2 — bottom-right, magenta, 2 orbital rings -->
   <div class="atom atom2">
     <div class="nucleus mag"></div>
     <div class="orbit-ring r1 mag" style="width:100px;height:38px;top:51px;left:20px;">
@@ -1170,7 +1160,6 @@ st.markdown("""
     </div>
   </div>
 
-  <!-- ATOM 3 — mid-right, gold, 2 orbital rings -->
   <div class="atom atom3">
     <div class="nucleus gold"></div>
     <div class="orbit-ring r1 gold" style="width:76px;height:28px;top:36px;left:12px;">
@@ -1182,7 +1171,6 @@ st.markdown("""
   </div>
 
 </div>
-<!-- END atom-scene -->
 
 <!-- ==========================================
      MOLECULE STRUCTURES — 6 faint SVG molecules
@@ -1191,24 +1179,19 @@ st.markdown("""
 ========================================== -->
 <div class="mol-scene">
 
-  <!-- mol-1 : Benzene ring — bottom-left, cyan strokes -->
   <div class="mol mol-1">
     <svg viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg">
-      <!-- Outer hexagon (bond skeleton) -->
       <polygon points="65,10 111,35 111,95 65,120 19,95 19,35"
                fill="none" stroke="#00f5ff" stroke-width="1.8" stroke-linejoin="round"/>
-      <!-- Inner dashed circle (delocalised electrons) -->
       <circle cx="65" cy="65" r="32"
               fill="none" stroke="#00f5ff" stroke-width="1.2"
               stroke-dasharray="6 4" opacity=".7"/>
-      <!-- Carbon atoms at each vertex -->
       <circle cx="65"  cy="10"  r="3" fill="#00f5ff" opacity=".9"/>
       <circle cx="111" cy="35"  r="3" fill="#00f5ff" opacity=".9"/>
       <circle cx="111" cy="95"  r="3" fill="#00f5ff" opacity=".9"/>
       <circle cx="65"  cy="120" r="3" fill="#00f5ff" opacity=".9"/>
       <circle cx="19"  cy="95"  r="3" fill="#00f5ff" opacity=".9"/>
       <circle cx="19"  cy="35"  r="3" fill="#00f5ff" opacity=".9"/>
-      <!-- H stubs radiating outward -->
       <line x1="65"  y1="10"  x2="65"  y2="0"   stroke="#00f5ff" stroke-width="1" opacity=".5"/>
       <line x1="111" y1="35"  x2="120" y2="26"   stroke="#00f5ff" stroke-width="1" opacity=".5"/>
       <line x1="111" y1="95"  x2="120" y2="104"  stroke="#00f5ff" stroke-width="1" opacity=".5"/>
@@ -1218,7 +1201,6 @@ st.markdown("""
     </svg>
   </div>
 
-  <!-- mol-2 : Benzene ring — top-right, magenta -->
   <div class="mol mol-2">
     <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
       <polygon points="50,8 86,28 86,72 50,92 14,72 14,28"
@@ -1241,42 +1223,31 @@ st.markdown("""
     </svg>
   </div>
 
-  <!-- mol-3 : Water molecule H₂O — bent triatomic, mid-left, gold -->
   <div class="mol mol-3">
     <svg viewBox="0 0 110 80" xmlns="http://www.w3.org/2000/svg">
-      <!-- O atom centre -->
       <circle cx="55" cy="50" r="8" fill="none" stroke="#ffd700" stroke-width="1.6" opacity=".9"/>
-      <!-- H atoms -->
       <circle cx="18" cy="22" r="5" fill="none" stroke="#ffd700" stroke-width="1.4" opacity=".85"/>
       <circle cx="92" cy="22" r="5" fill="none" stroke="#ffd700" stroke-width="1.4" opacity=".85"/>
-      <!-- O-H bonds -->
       <line x1="49" y1="43" x2="23" y2="27" stroke="#ffd700" stroke-width="1.5" opacity=".8"/>
       <line x1="61" y1="43" x2="87" y2="27" stroke="#ffd700" stroke-width="1.5" opacity=".8"/>
-      <!-- Lone-pair dots on O -->
       <circle cx="47" cy="58" r="1.5" fill="#ffd700" opacity=".6"/>
       <circle cx="63" cy="58" r="1.5" fill="#ffd700" opacity=".6"/>
-      <!-- Atom labels (tiny) -->
       <text x="50"  y="54" font-size="7" fill="#ffd700" opacity=".7" font-family="monospace">O</text>
       <text x="13"  y="26" font-size="6" fill="#ffd700" opacity=".6" font-family="monospace">H</text>
       <text x="88"  y="26" font-size="6" fill="#ffd700" opacity=".6" font-family="monospace">H</text>
     </svg>
   </div>
 
-  <!-- mol-4 : Fused bicyclic (naphthalene-style) — bottom-center, cyan -->
   <div class="mol mol-4">
     <svg viewBox="0 0 160 110" xmlns="http://www.w3.org/2000/svg">
-      <!-- Left hexagon -->
       <polygon points="20,55 40,20 80,20 100,55 80,90 40,90"
                fill="none" stroke="#00f5ff" stroke-width="1.5" stroke-linejoin="round"/>
-      <!-- Right hexagon (shares one edge 80,20–80,90 … shifted) -->
       <polygon points="80,20 120,20 140,55 120,90 80,90 60,55"
                fill="none" stroke="#00f5ff" stroke-width="1.5" stroke-linejoin="round"/>
-      <!-- Delocalised circles -->
       <circle cx="60"  cy="55" r="22" fill="none" stroke="#00f5ff" stroke-width=".9"
               stroke-dasharray="4 3" opacity=".55"/>
       <circle cx="100" cy="55" r="22" fill="none" stroke="#00f5ff" stroke-width=".9"
               stroke-dasharray="4 3" opacity=".55"/>
-      <!-- Vertex atoms -->
       <circle cx="20"  cy="55" r="2.5" fill="#00f5ff" opacity=".8"/>
       <circle cx="40"  cy="20" r="2.5" fill="#00f5ff" opacity=".8"/>
       <circle cx="80"  cy="20" r="2.5" fill="#00f5ff" opacity=".8"/>
@@ -1286,7 +1257,6 @@ st.markdown("""
       <circle cx="120" cy="20" r="2.5" fill="#00f5ff" opacity=".8"/>
       <circle cx="140" cy="55" r="2.5" fill="#00f5ff" opacity=".8"/>
       <circle cx="120" cy="90" r="2.5" fill="#00f5ff" opacity=".8"/>
-      <!-- H stubs on outer vertices -->
       <line x1="20"  y1="55" x2="8"   y2="55" stroke="#00f5ff" stroke-width=".8" opacity=".4"/>
       <line x1="40"  y1="20" x2="32"  y2="9"  stroke="#00f5ff" stroke-width=".8" opacity=".4"/>
       <line x1="80"  y1="20" x2="80"  y2="8"  stroke="#00f5ff" stroke-width=".8" opacity=".4"/>
@@ -1298,7 +1268,6 @@ st.markdown("""
     </svg>
   </div>
 
-  <!-- mol-5 : Small benzene ring — right-side, green -->
   <div class="mol mol-5">
     <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
       <polygon points="40,6 68,22 68,58 40,74 12,58 12,22"
@@ -1315,21 +1284,15 @@ st.markdown("""
     </svg>
   </div>
 
-  <!-- mol-6 : CO₂ / linear triatomic — top-center, orange -->
   <div class="mol mol-6">
     <svg viewBox="0 0 140 50" xmlns="http://www.w3.org/2000/svg">
-      <!-- Central C atom -->
       <circle cx="70" cy="25" r="7" fill="none" stroke="#ff6b35" stroke-width="1.6" opacity=".9"/>
-      <!-- Left O atom -->
       <circle cx="18" cy="25" r="7" fill="none" stroke="#ff6b35" stroke-width="1.6" opacity=".9"/>
-      <!-- Right O atom -->
       <circle cx="122" cy="25" r="7" fill="none" stroke="#ff6b35" stroke-width="1.6" opacity=".9"/>
-      <!-- Double bonds (two parallel lines each side) -->
       <line x1="25" y1="22" x2="63" y2="22" stroke="#ff6b35" stroke-width="1.3" opacity=".75"/>
       <line x1="25" y1="28" x2="63" y2="28" stroke="#ff6b35" stroke-width="1.3" opacity=".75"/>
       <line x1="77" y1="22" x2="115" y2="22" stroke="#ff6b35" stroke-width="1.3" opacity=".75"/>
       <line x1="77" y1="28" x2="115" y2="28" stroke="#ff6b35" stroke-width="1.3" opacity=".75"/>
-      <!-- Atom labels -->
       <text x="64"  y="29" font-size="7" fill="#ff6b35" opacity=".7" font-family="monospace">C</text>
       <text x="13"  y="29" font-size="7" fill="#ff6b35" opacity=".7" font-family="monospace">O</text>
       <text x="117" y="29" font-size="7" fill="#ff6b35" opacity=".7" font-family="monospace">O</text>
@@ -1337,7 +1300,6 @@ st.markdown("""
   </div>
 
 </div>
-<!-- END mol-scene -->
 
 """, unsafe_allow_html=True)
 
@@ -1629,14 +1591,12 @@ with plot_col:
 st.markdown("""
 <div class="about-wrap">
 
-  <!-- Section divider -->
   <div class="about-divider">
     <div class="about-divider-line"></div>
     <div class="about-divider-label">⚛ About This Project</div>
     <div class="about-divider-line"></div>
   </div>
 
-  <!-- Wide narrative card -->
   <div class="about-card-wide" style="margin-bottom:1.2rem;">
     <p>
       <strong>Quantum Lab Simulator</strong> is an interactive computational physics tool that models
@@ -1659,10 +1619,8 @@ st.markdown("""
     </div>
   </div>
 
-  <!-- 3-column info cards -->
   <div class="about-grid">
 
-    <!-- Card 1: What we simulate -->
     <div class="about-card">
       <span class="about-card-icon">🔬</span>
       <div class="about-card-title">What We Simulate</div>
@@ -1674,7 +1632,6 @@ st.markdown("""
       </div>
     </div>
 
-    <!-- Card 2: Physics behind it -->
     <div class="about-card mag">
       <span class="about-card-icon">⚡</span>
       <div class="about-card-title">The Physics</div>
@@ -1687,7 +1644,6 @@ st.markdown("""
       </div>
     </div>
 
-    <!-- Card 3: What you can explore -->
     <div class="about-card gold">
       <span class="about-card-icon">🧪</span>
       <div class="about-card-title">What You Can Explore</div>
@@ -1699,7 +1655,6 @@ st.markdown("""
       </div>
     </div>
 
-    <!-- Card 4: Key concepts -->
     <div class="about-card">
       <span class="about-card-icon">📐</span>
       <div class="about-card-title">Key Quantum Concepts</div>
@@ -1711,7 +1666,6 @@ st.markdown("""
       </div>
     </div>
 
-    <!-- Card 5: Real-world applications -->
     <div class="about-card mag">
       <span class="about-card-icon">🌐</span>
       <div class="about-card-title">Real-World Applications</div>
@@ -1723,7 +1677,6 @@ st.markdown("""
       </div>
     </div>
 
-    <!-- Card 6: Tech stack -->
     <div class="about-card gold">
       <span class="about-card-icon">💻</span>
       <div class="about-card-title">Built With</div>
@@ -1744,7 +1697,6 @@ st.markdown("""
 
   </div>
 
-  <!-- Stats strip -->
   <div class="about-card-wide">
     <div class="stat-row">
       <div class="stat-item">
