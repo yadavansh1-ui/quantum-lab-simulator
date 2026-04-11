@@ -1348,7 +1348,7 @@ st.markdown("""
 <div class="title-wrap">
   <div class="corner-tl"></div>
   <div class="corner-br"></div>
-  <h1>⚛ Quantum Lab Simulator — Ansh Yadav</h1>
+  <h1 style="text-align:center;">⚛ Quantum Lab Simulator</h1>
   <p class="subtitle">🔬 Quantum Chemistry Simulation Environment &nbsp;·&nbsp; Particle in a Box Model</p>
   <p class="byline">Developed by Ansh Yadav &nbsp;|&nbsp; Computational Chemistry Project</p>
   <div class="status-bar">
