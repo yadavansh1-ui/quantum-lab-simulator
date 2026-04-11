@@ -1586,104 +1586,101 @@ with plot_col:
         """, unsafe_allow_html=True)
 
 # -------------------------------------------------------------
+# -------------------------------------------------------------
 # ABOUT / PROJECT SECTION
 # -------------------------------------------------------------
-st.markdown("""
-<div class="about-wrap">
 
+st.markdown('<div class="about-wrap">', unsafe_allow_html=True)
+
+st.markdown("""
   <div class="about-divider">
     <div class="about-divider-line"></div>
-    <div class="about-divider-label">⚛ About This Project</div>
+    <div class="about-divider-label">About This Project</div>
     <div class="about-divider-line"></div>
   </div>
+""", unsafe_allow_html=True)
 
-  <div class="about-card-wide" style="margin-bottom:1.2rem;">
+st.markdown("""
+  <div class="about-card-wide">
     <p>
-      <strong>Quantum Lab Simulator</strong> is an interactive computational physics tool that models
-      one of the most fundamental systems in quantum mechanics — the
+      <strong>Quantum Lab Simulator</strong> is an interactive computational physics tool
+      that models one of the most fundamental systems in quantum mechanics &mdash; the
       <em>Particle in a Box (PIB)</em> model. Developed as part of a
-      <strong>Computational Chemistry Project</strong> by <strong>Ansh Yadav</strong>, this simulator
-      lets you explore how quantum numbers, box dimensions, and energy levels govern the
-      behaviour of a confined quantum particle in real time.
+      <strong>Computational Chemistry Project</strong> by <strong>Ansh Yadav</strong>,
+      this simulator lets you explore how quantum numbers, box dimensions, and energy levels
+      govern the behaviour of a confined quantum particle in real time.
     </p>
     <p style="margin-top:.9rem;">
-      Unlike classical particles that can sit anywhere with any speed, a quantum particle
-      confined to a 1-D box can only exist in <em>discrete energy states</em>. Each state
-      has a unique wavefunction ψ(x) that encodes where the particle is <em>most likely</em>
-      to be found — and this simulator makes that invisible quantum world visible and tangible.
+      Unlike classical particles, a quantum particle confined to a 1-D box can only exist
+      in <em>discrete energy states</em>. Each state has a unique wavefunction that encodes
+      where the particle is most likely to be found &mdash; making the invisible quantum world visible.
     </p>
     <div class="formula-row">
-      <span class="formula-pill">ψₙ(x) = √(2/L) · sin(nπx/L)</span>
-      <span class="formula-pill mag">|ψ(x)|² = probability density</span>
-      <span class="formula-pill gold">Eₙ = n²π²ℏ² / 2mL²</span>
+      <span class="formula-pill">psi(x) = sqrt(2/L) sin(n*pi*x/L)</span>
+      <span class="formula-pill mag">|psi(x)|^2 = probability density</span>
+      <span class="formula-pill gold">E_n = n^2 * pi^2 * hbar^2 / 2mL^2</span>
     </div>
   </div>
+""", unsafe_allow_html=True)
 
+st.markdown("""
   <div class="about-grid">
-
     <div class="about-card">
-      <span class="about-card-icon">🔬</span>
+      <span class="about-card-icon">&#128300;</span>
       <div class="about-card-title">What We Simulate</div>
       <div class="about-card-body">
         A <strong>single electron</strong> confined inside a perfectly rigid 1-D potential well
-        of width L. The walls are infinitely high — the particle cannot escape. Inside,
-        it exists as a <strong>standing wave</strong> described by the Schrödinger equation.
-        We compute and display the exact analytical solution for quantum states n = 1 through 5.
+        of width L. The walls are infinitely high &mdash; the particle cannot escape. Inside,
+        it exists as a <strong>standing wave</strong> described by the Schrodinger equation.
+        We compute the exact analytical solution for quantum states n = 1 through 5.
       </div>
     </div>
-
     <div class="about-card mag">
-      <span class="about-card-icon">⚡</span>
+      <span class="about-card-icon">&#9889;</span>
       <div class="about-card-title">The Physics</div>
       <div class="about-card-body">
-        The <strong>time-independent Schrödinger equation</strong> −(ℏ²/2m)·ψ″ = Eψ
-        gives quantised energy levels <strong>Eₙ ∝ n²</strong>. Doubling the quantum number
+        The <strong>time-independent Schrodinger equation</strong> gives quantised energy
+        levels <strong>E_n proportional to n^2</strong>. Doubling the quantum number
         quadruples the energy. Doubling the box length quarters it.
-        The <strong>probability density</strong> |ψ|² tells us where — statistically —
-        the particle will be detected upon measurement.
+        The <strong>probability density</strong> tells us where the particle will be detected.
       </div>
     </div>
-
     <div class="about-card gold">
-      <span class="about-card-icon">🧪</span>
+      <span class="about-card-icon">&#129514;</span>
       <div class="about-card-title">What You Can Explore</div>
       <div class="about-card-body">
         Drag the <strong>quantum number n</strong> slider to jump between energy states and
         watch the wavefunction reshape. Adjust <strong>box length L</strong> to see energy
         levels compress or spread. Hit <strong>Animate Phase</strong> to watch the
-        time-dependent wavefunction ψ(x,t) oscillate — a real-time glimpse of quantum dynamics.
+        time-dependent wavefunction oscillate in real time.
       </div>
     </div>
-
     <div class="about-card">
-      <span class="about-card-icon">📐</span>
+      <span class="about-card-icon">&#128208;</span>
       <div class="about-card-title">Key Quantum Concepts</div>
       <div class="about-card-body">
-        <strong>Quantisation</strong> — only discrete energies are allowed, no continuum.<br><br>
-        <strong>Nodes</strong> — ψ(x) has (n−1) zero-crossings; more nodes = higher energy.<br><br>
-        <strong>Antinodes</strong> — probability peaks where the particle is most likely found.<br><br>
-        <strong>Zero-point energy</strong> — even n=1 has non-zero energy; the particle can never be still.
+        <strong>Quantisation</strong> &mdash; only discrete energies are allowed.<br><br>
+        <strong>Nodes</strong> &mdash; wavefunction has (n-1) zero-crossings; more nodes = higher energy.<br><br>
+        <strong>Antinodes</strong> &mdash; probability peaks where the particle is most likely found.<br><br>
+        <strong>Zero-point energy</strong> &mdash; even n=1 has non-zero energy; the particle is never still.
       </div>
     </div>
-
     <div class="about-card mag">
-      <span class="about-card-icon">🌐</span>
+      <span class="about-card-icon">&#127758;</span>
       <div class="about-card-title">Real-World Applications</div>
       <div class="about-card-body">
-        The PIB model underpins real chemistry and physics: <strong>conjugated π-systems</strong>
+        The PIB model underpins real chemistry: <strong>conjugated pi-systems</strong>
         in organic molecules, <strong>quantum dots</strong> whose colour is tuned by size,
         <strong>semiconductor nanowires</strong>, and <strong>spectroscopic selection rules</strong>.
-        It is the gateway model for understanding atoms, molecules, and solid-state band theory.
+        It is the gateway to understanding atoms, molecules, and band theory.
       </div>
     </div>
-
     <div class="about-card gold">
-      <span class="about-card-icon">💻</span>
+      <span class="about-card-icon">&#128187;</span>
       <div class="about-card-title">Built With</div>
       <div class="about-card-body">
-        A pure-Python scientific stack — no heavy frameworks, no black-box solvers.
-        Every wavefunction, every energy level, every graph is computed analytically
-        from first principles in the code itself.
+        A pure-Python scientific stack &mdash; no heavy frameworks, no black-box solvers.
+        Every wavefunction and energy level is computed analytically from first principles.
         <div class="tech-row">
           <span class="tech-badge">Python 3</span>
           <span class="tech-badge">Streamlit</span>
@@ -1694,9 +1691,10 @@ st.markdown("""
         </div>
       </div>
     </div>
-
   </div>
+""", unsafe_allow_html=True)
 
+st.markdown("""
   <div class="about-card-wide">
     <div class="stat-row">
       <div class="stat-item">
@@ -1712,15 +1710,15 @@ st.markdown("""
         <span class="stat-label">Animation Frames</span>
       </div>
       <div class="stat-item">
-        <span class="stat-value">1.055×10⁻³⁴</span>
-        <span class="stat-label">ℏ  (J·s)</span>
+        <span class="stat-value">1.055e-34</span>
+        <span class="stat-label">hbar (J s)</span>
       </div>
       <div class="stat-item">
-        <span class="stat-value">9.109×10⁻³¹</span>
-        <span class="stat-label">mₑ  (kg)</span>
+        <span class="stat-value">9.109e-31</span>
+        <span class="stat-label">m_e (kg)</span>
       </div>
       <div class="stat-item">
-        <span class="stat-value">1–10 Å</span>
+        <span class="stat-value">1-10 Angstrom</span>
         <span class="stat-label">Box Length Range</span>
       </div>
       <div class="stat-item">
@@ -1729,9 +1727,9 @@ st.markdown("""
       </div>
     </div>
   </div>
-
-</div>
 """, unsafe_allow_html=True)
+
+st.markdown('</div>', unsafe_allow_html=True)
 
 # -------------------------------------------------------------
 # FOOTER
